@@ -1,0 +1,69 @@
+/**
+ * CSS for Chat Page
+ */
+
+.chat-page {
+  width: min(100%, 1600px);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--sidebar-bg);
+  box-shadow: 0 6px 24px rgba(11, 20, 26, 0.14);
+}
+
+.chat-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background: var(--sidebar-bg);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chat-page {
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .chat-main {
+    flex-direction: column;
+  }
+
+  .chat-list {
+    width: 100% !important;
+    height: 30vh;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .dark .chat-list {
+    border-bottom-color: #333;
+  }
+
+  .chat-window {
+    height: 70vh;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-list-header h2 {
+    font-size: 18px;
+  }
+
+  .message-list {
+    padding: 8px;
+  }
+
+  .message-content {
+    max-width: 85%;
+  }
+
+  .chat-header {
+    padding: 12px;
+  }
+
+  .navbar-right {
+    gap: 8px;
+  }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ChatZone Pro - Real-time Chat Application" />
+  <meta name="theme-color" content="#667eea" />
+  <title>ChatZone Pro - Real-time Chat Application</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles/global.css" />
+</head>
+<body>
+  <noscript>
+    <div style="text-align: center; padding: 40px; font-family: sans-serif;">
+      <h1>JavaScript is Required</h1>
+      <p>This application requires JavaScript to be enabled. Please enable JavaScript in your browser settings.</p>
+    </div>
+  </noscript>
+  
+  <div id="root"></div>
+  
+  <script>
+    // Request notification permission on load
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+    
+    // Register service worker for PWA support
+    if ('serviceWorker' in navigator && /^https:\/\//.test(window.location.href)) {
+      navigator.serviceWorker.register('/service-worker.js').catch(err => {
+        console.log('Service Worker registration failed:', err);
+      });
+    }
+  </script>
+</body>
+</html>
