@@ -70,6 +70,11 @@ app.get('/health', (req, res) => {
   res.status(200).json({ success: true, message: 'Server is running' });
 });
 
+// Alias health endpoint under /api for deployment checks
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ success: true, message: 'Server is running' });
+});
+
 // Root endpoint
 app.get('/', (req, res) => {
   res.status(200).json({ 
@@ -78,6 +83,22 @@ app.get('/', (req, res) => {
     endpoints: {
       health: '/health',
       api: '/api',
+      auth: '/api/auth',
+      chats: '/api/chats',
+      messages: '/api/messages',
+      users: '/api/users',
+      admin: '/api/admin'
+    }
+  });
+});
+
+// API root endpoint
+app.get('/api', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'ChatZone Pro API',
+    endpoints: {
+      health: '/api/health',
       auth: '/api/auth',
       chats: '/api/chats',
       messages: '/api/messages',

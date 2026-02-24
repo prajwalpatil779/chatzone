@@ -31,6 +31,10 @@ router.use(authMiddleware);
 // Send message
 router.post('/', upload.single('media'), messageController.sendMessage);
 
+// Search messages
+// Keep this before "/:chatId" so "search" is not treated as a chatId.
+router.get('/search', messageController.searchMessages);
+
 // Get messages
 router.get('/:chatId', messageController.getMessages);
 
@@ -46,8 +50,5 @@ router.put('/:messageId/reaction', messageController.addReaction);
 
 // Mark as seen
 router.put('/:messageId/seen', messageController.markMessageAsSeen);
-
-// Search messages
-router.get('/search', messageController.searchMessages);
 
 module.exports = router;
