@@ -33,10 +33,30 @@ const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 const server = http.createServer(app);
 
+const configuredClientUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+const allowedOrigins = new Set([
+  configuredClientUrl,
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+]);
+
+const isAllowedOrigin = (origin) => {
+  if (!origin) return true;
+  if (allowedOrigins.has(origin)) return true;
+
+  // Allow Render-hosted frontend variants (preview or renamed services)
+  return /^https:\/\/[a-z0-9-]+\.onrender\.com$/i.test(origin);
+};
+
 // Socket.io initialization with CORS
 const io = socketIO(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: (origin, callback) => {
+      if (isAllowedOrigin(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('CORS blocked'));
+    },
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
@@ -48,7 +68,12 @@ const io = socketIO(server, {
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    if (isAllowedOrigin(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('CORS blocked'));
+  },
   credentials: true,
 }));
 
