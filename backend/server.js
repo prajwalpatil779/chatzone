@@ -70,6 +70,23 @@ app.get('/health', (req, res) => {
   res.status(200).json({ success: true, message: 'Server is running' });
 });
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    success: true, 
+    message: 'ChatZone Pro Backend API',
+    endpoints: {
+      health: '/health',
+      api: '/api',
+      auth: '/api/auth',
+      chats: '/api/chats',
+      messages: '/api/messages',
+      users: '/api/users',
+      admin: '/api/admin'
+    }
+  });
+});
+
 // Initialize Socket.io
 initializeSocket(io);
 

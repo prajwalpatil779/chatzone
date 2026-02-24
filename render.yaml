@@ -46,9 +46,9 @@ services:
         destination: /index.html
     envVars:
       - key: REACT_APP_API_URL
-        value: https://chatzone-backend.onrender.com/api
+        value: https://chatzone-backend-dzex.onrender.com/api
       - key: REACT_APP_SOCKET_URL
-        value: https://chatzone-backend.onrender.com
+        value: https://chatzone-backend-dzex.onrender.com
       - key: REACT_APP_FIREBASE_API_KEY
         sync: false
       - key: REACT_APP_FIREBASE_PROJECT_ID
