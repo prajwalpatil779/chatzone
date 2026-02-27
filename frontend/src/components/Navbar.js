@@ -20,7 +20,10 @@ const Navbar = ({ onOpenSettings, onOpenSearch }) => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <h1 className="navbar-brand">ChatZone</h1>
+        <div className="navbar-logo">
+          <img src="/logo.png" alt="chrome1" />
+        </div>
+        <h1 className="navbar-brand">chrome1</h1>
       </div>
 
       <div className="navbar-center">

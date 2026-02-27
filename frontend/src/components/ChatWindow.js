@@ -9,7 +9,7 @@ import MessageList from './MessageList';
 import MessageInput from './MessageInput';
 import './ChatWindow.css';
 
-const ChatWindow = ({ chat, socket }) => {
+const ChatWindow = ({ chat, socket, showBack, onBack }) => {
   const { user } = useAuth();
   const [recipientOnline, setRecipientOnline] = useState(false);
   const [typingUsers, setTypingUsers] = useState([]);
@@ -103,6 +103,16 @@ const ChatWindow = ({ chat, socket }) => {
   return (
     <div className="chat-window">
       <div className="chat-header">
+        {showBack && (
+          <button
+            className="chat-back-btn"
+            onClick={onBack}
+            type="button"
+            aria-label="Back to chats"
+          >
+            {'<'}
+          </button>
+        )}
         <div className="chat-header-avatar">
           <img
             src={getChatAvatar() || '/default-avatar.svg'}

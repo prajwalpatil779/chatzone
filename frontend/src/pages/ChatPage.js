@@ -21,6 +21,7 @@ const ChatPage = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [socket, setSocket] = useState(null);
+  const [isMobileChatOpen, setIsMobileChatOpen] = useState(false);
 
   // Initialize socket on component mount
   useEffect(() => {
@@ -40,6 +41,7 @@ const ChatPage = () => {
   const handleSelectChat = (chat) => {
     setSelectedChat(chat);
     setCurrentChat(chat);
+    setIsMobileChatOpen(true);
   };
 
   const handleSelectUser = async (selectedUser) => {
@@ -62,13 +64,26 @@ const ChatPage = () => {
         onOpenSearch={() => setShowSearch(true)}
       />
 
-      <div className="chat-main">
-        <ChatList
-          onSelectChat={handleSelectChat}
-          selectedChatId={selectedChat?._id}
-        />
+      <div
+        className={`chat-main ${
+          isMobileChatOpen ? 'mobile-chat-open' : 'mobile-list-open'
+        }`}
+      >
+        <div className="chat-list-panel">
+          <ChatList
+            onSelectChat={handleSelectChat}
+            selectedChatId={selectedChat?._id}
+          />
+        </div>
 
-        <ChatWindow chat={selectedChat || currentChat} socket={socket} />
+        <div className="chat-window-panel">
+          <ChatWindow
+            chat={selectedChat || currentChat}
+            socket={socket}
+            showBack={isMobileChatOpen}
+            onBack={() => setIsMobileChatOpen(false)}
+          />
+        </div>
       </div>
 
       {showSearch && (
