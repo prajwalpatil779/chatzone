@@ -347,6 +347,11 @@ To switch themes, use the moon/sun icon in the navbar or set it in preferences.
 
 ## 🚀 Deployment
 
+### Live Web URLs
+
+- Frontend (Actual Website): https://chatzone-frontend-1dwm.onrender.com
+- Backend API Base: https://chatzone-backend-dzex.onrender.com
+- Backend Health Check: https://chatzone-backend-dzex.onrender.com/api/health
 ### Backend Deployment (Heroku/Railway/Render)
 
 1. Create an account on your chosen platform
@@ -415,3 +420,4 @@ Created with ❤️ by the ChatZone Pro team
 ---
 
 **Happy Chatting! 💬**
+
