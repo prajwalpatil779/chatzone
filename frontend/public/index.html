@@ -6,8 +6,7 @@
   <meta name="description" content="ChatZone Pro - Real-time Chat Application" />
   <meta name="theme-color" content="#667eea" />
   <title>ChatZone Pro - Real-time Chat Application</title>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/styles/global.css" />
+  <link rel="icon" href="/logo.png" />
 </head>
 <body>
   <noscript>
@@ -26,11 +25,7 @@
     }
     
     // Register service worker for PWA support
-    if ('serviceWorker' in navigator && /^https:\/\//.test(window.location.href)) {
-      navigator.serviceWorker.register('/service-worker.js').catch(err => {
-        console.log('Service Worker registration failed:', err);
-      });
-    }
+    // Service worker disabled for Capacitor build (no service-worker.js in assets).
   </script>
 </body>
 </html>

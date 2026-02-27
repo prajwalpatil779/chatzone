@@ -38,6 +38,15 @@ const allowedOrigins = new Set([
   configuredClientUrl,
   'http://localhost:3000',
   'http://127.0.0.1:3000',
+  // Capacitor / mobile WebView origins
+  'http://localhost',
+  'http://127.0.0.1',
+  'http://localhost:8100',
+  'http://127.0.0.1:8100',
+  'https://localhost',
+  'https://127.0.0.1',
+  'capacitor://localhost',
+  'ionic://localhost',
 ]);
 
 const isAllowedOrigin = (origin) => {
